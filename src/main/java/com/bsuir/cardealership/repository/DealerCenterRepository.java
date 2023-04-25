@@ -5,5 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 
 public interface DealerCenterRepository extends JpaRepository<DealerCenter, Long> {
-
+DealerCenter getDealerCenterById(Long dealerCenterId);
 }
