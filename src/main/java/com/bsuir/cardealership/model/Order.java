@@ -17,8 +17,9 @@ public class Order {
     @JoinColumn(name = "user_id")
     private User userId;
 
-    @Column(name = "time")
-    private String time;
+    @ManyToOne
+    @JoinColumn(name = "date")
+    private DateSlots date;
 
     @ManyToOne
     @JoinColumn(name = "dealerCenter")
@@ -48,12 +49,12 @@ public class Order {
         this.userId = userId;
     }
 
-    public String getTime() {
-        return time;
+    public DateSlots getDate() {
+        return date;
     }
 
-    public void setTime(String time) {
-        this.time = time;
+    public void setDate(DateSlots date) {
+        this.date = date;
     }
 
     public DealerCenter getDealerCenter() {
@@ -72,10 +73,10 @@ public class Order {
         this.statusId = statusId;
     }
 
-    public Order(Car carId, User userId, String time, DealerCenter dealerCenter, OrderStatus statusId) {
+    public Order(Car carId, User userId, DateSlots date, DealerCenter dealerCenter, OrderStatus statusId) {
         this.carId = carId;
         this.userId = userId;
-        this.time = time;
+        this.date = date;
         this.dealerCenter = dealerCenter;
         this.statusId = statusId;
     }

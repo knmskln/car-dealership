@@ -12,7 +12,7 @@ public class OrderRequest {
     private Long userId;
 
     @NotBlank
-    private String time;
+    private Long dateId;
 
     @NotBlank
     private Long dealerCenterId;
@@ -35,12 +35,12 @@ public class OrderRequest {
         this.userId = userId;
     }
 
-    public String getTime() {
-        return time;
+    public Long getDateId() {
+        return dateId;
     }
 
-    public void setTime(String time) {
-        this.time = time;
+    public void setDateId(Long dateId) {
+        this.dateId = dateId;
     }
 
     public Long getDealerCenterId() {
