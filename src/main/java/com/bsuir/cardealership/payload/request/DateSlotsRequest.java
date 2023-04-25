@@ -1,8 +1,5 @@
 package com.bsuir.cardealership.payload.request;
 
-
-import com.fasterxml.jackson.annotation.JsonFormat;
-
 import javax.validation.constraints.NotBlank;
 import java.time.LocalDateTime;
 

@@ -11,11 +11,11 @@ public class Order {
 
     @ManyToOne
     @JoinColumn(name = "car_id")
-    private Car carId;
+    private Car car;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private User userId;
+    private User user;
 
     @ManyToOne
     @JoinColumn(name = "date")
@@ -27,27 +27,9 @@ public class Order {
 
     @ManyToOne
     @JoinColumn(name = "status_id")
-    private OrderStatus statusId;
+    private OrderStatus status;
 
-    public long getId() {
-        return id;
-    }
 
-    public Car getCarId() {
-        return carId;
-    }
-
-    public void setCarId(Car carId) {
-        this.carId = carId;
-    }
-
-    public User getUserId() {
-        return userId;
-    }
-
-    public void setUserId(User userId) {
-        this.userId = userId;
-    }
 
     public DateSlots getDate() {
         return date;
@@ -55,6 +37,30 @@ public class Order {
 
     public void setDate(DateSlots date) {
         this.date = date;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public Car getCar() {
+        return car;
+    }
+
+    public void setCar(Car car) {
+        this.car = car;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public DealerCenter getDealerCenter() {
@@ -65,20 +71,20 @@ public class Order {
         this.dealerCenter = dealerCenter;
     }
 
-    public OrderStatus getStatusId() {
-        return statusId;
+    public OrderStatus getStatus() {
+        return status;
     }
 
-    public void setStatusId(OrderStatus statusId) {
-        this.statusId = statusId;
+    public void setStatus(OrderStatus status) {
+        this.status = status;
     }
 
-    public Order(Car carId, User userId, DateSlots date, DealerCenter dealerCenter, OrderStatus statusId) {
-        this.carId = carId;
-        this.userId = userId;
+    public Order(Car car, User user, DateSlots date, DealerCenter dealerCenter, OrderStatus status) {
+        this.car = car;
+        this.user = user;
         this.date = date;
         this.dealerCenter = dealerCenter;
-        this.statusId = statusId;
+        this.status = status;
     }
 
     public Order(){

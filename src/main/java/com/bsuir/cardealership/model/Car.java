@@ -2,7 +2,6 @@ package com.bsuir.cardealership.model;
 
 import javax.persistence.*;
 
-
 @Entity
 @Table(name = "cars")
 public class Car {
