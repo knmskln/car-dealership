@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 import javax.validation.Valid;
+
+import com.bsuir.cardealership.util.email.EmailSender;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseCookie;
@@ -116,7 +118,11 @@ public class AuthController {
 
         user.setRoles(roles);
         userRepository.save(user);
-
+        EmailSender.getInstance().sendEmail(
+                user.getEmail(),
+                "Автосалон",
+                user.getName() + ", спасибо за регистрацию!"
+        );
         return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
     }
 
