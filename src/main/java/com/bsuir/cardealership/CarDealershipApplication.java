@@ -16,7 +16,7 @@ public class CarDealershipApplication {
         return new WebMvcConfigurer() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/api/cars").allowedOrigins("http://127.0.0.1:3000");
+                registry.addMapping("/api/**").allowedOrigins("http://127.0.0.1:3000");
             }
         };
     }
