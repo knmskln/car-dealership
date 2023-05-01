@@ -1,5 +1,5 @@
-# Платформа автоматизированных продаж дилерских автомобилей
-Клиент-серверное веб-приложение & Dealership Automated Sales Platform
+# Платформа продаж дилерских автомобилей & Dealership Sales Platform
+Клиент-серверное веб-приложение/Client-server web application
 
 [Репозиторий с клиентской частью & Repository with client side](https://github.com/knmskln/car-dealership-app)
 
