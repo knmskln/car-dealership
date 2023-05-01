@@ -24,14 +24,26 @@ public class Car {
     @Column(name = "price")
     private Double price;
 
+    @Column(name = "image_path")
+    private String imagePath;
+
     public Car() {}
 
-    public Car(String mark, String model, Integer year, String color, Double price) {
+    public Car(String mark, String model, Integer year, String color, Double price, String imagePath) {
         this.mark = mark;
         this.model = model;
         this.year = year;
         this.color = color;
         this.price = price;
+        this.imagePath = imagePath;
+    }
+
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
     }
 
     public long getId() {

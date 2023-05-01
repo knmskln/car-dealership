@@ -3,6 +3,7 @@ package com.bsuir.cardealership.controller;
 import com.bsuir.cardealership.model.*;
 import com.bsuir.cardealership.payload.request.OrderRequest;
 import com.bsuir.cardealership.repository.*;
+import com.bsuir.cardealership.util.email.EmailSender;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -44,7 +45,7 @@ public class OrderController {
     }
 
     @PostMapping("/orders")
-    public ResponseEntity<Order> createCar(@RequestBody OrderRequest orderRequest) {
+    public ResponseEntity<Order> createOrder(@RequestBody OrderRequest orderRequest) {
         try {
             Long carId = orderRequest.getCarId();
             Long userId = orderRequest.getUserId();
@@ -58,6 +59,14 @@ public class OrderController {
             DateSlots dateSlots = dateSlotsRepository.getDateSlotsById(dateId);
             Order _tutorial = orderRepository
                     .save(new Order(car, user, dateSlots, dealerCenter, status));
+            EmailSender.getInstance().sendEmail(
+                    user.getEmail(),
+                    "Заявка на тест-драйв",
+                    user.getName() + ", спасибо за заявку на тест-драйв!"+
+                            "\nАвтомобиль: " + car.getModel() + "\nДилерский центр: "
+                            + dealerCenter.getAddress() +
+                            "\nДата и время: " + dateSlots.getDate()
+            );
             return new ResponseEntity<>(_tutorial, HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
