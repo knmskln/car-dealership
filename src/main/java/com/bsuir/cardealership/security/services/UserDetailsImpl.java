@@ -78,6 +78,13 @@ public class UserDetailsImpl implements UserDetails {
         return username;
     }
 
+    public String getNumber() {
+        return number;
+    }
+    public String getName(){
+        return name;
+    }
+
     @Override
     public boolean isAccountNonExpired() {
         return true;

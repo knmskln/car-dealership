@@ -3,16 +3,40 @@ package com.bsuir.cardealership.payload.response;
 import java.util.List;
 
 public class UserInfoResponse {
+    private String token;
+    private String type = "Bearer";
     private Long id;
     private String username;
+
+    private String name;
     private String email;
+    private String number;
     private List<String> roles;
 
-    public UserInfoResponse(Long id, String username, String email, List<String> roles) {
+    public UserInfoResponse(String accessToken, Long id, String username, String name, String email, String number,List<String> roles) {
+        this.token = accessToken;
         this.id = id;
         this.username = username;
+        this.name = name;
         this.email = email;
+        this.number = number;
         this.roles = roles;
+    }
+
+    public String getAccessToken() {
+        return token;
+    }
+
+    public void setAccessToken(String accessToken) {
+        this.token = accessToken;
+    }
+
+    public String getTokenType() {
+        return type;
+    }
+
+    public void setTokenType(String tokenType) {
+        this.type = tokenType;
     }
 
     public Long getId() {
@@ -41,5 +65,21 @@ public class UserInfoResponse {
 
     public List<String> getRoles() {
         return roles;
+    }
+
+    public String getNumber() {
+        return number;
+    }
+
+    public void setNumber(String number) {
+        this.number = number;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }
