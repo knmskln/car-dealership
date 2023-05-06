@@ -7,7 +7,6 @@
 
 PostgreSQL database, work with the database is carried out using the hibernate library.
 
-## MVP:
 
 ### Меню администратора & Admin menu:
 
@@ -26,14 +25,3 @@ PostgreSQL database, work with the database is carried out using the hibernate l
 - отправление заявки на тест-драйв автомобиля/sending a request for a test drive
 - просмотр своих заявок/view orders
 - оценить тест-драйв/evaluate the car
-
-## Nice to have:
-
-### Меню администратора:
-
--
-
-### По программе:
-
-- при смене статуса заявки на «Одобрено» или «Отклонено» будет выслано соответствующее письмо на почту. 
-- у пользователя будет возможность восстановить пароль с помощью электронной почты (пароль сгенерируется и отправится на указанную почту).
