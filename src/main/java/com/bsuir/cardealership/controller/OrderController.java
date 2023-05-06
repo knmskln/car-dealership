@@ -2,8 +2,10 @@ package com.bsuir.cardealership.controller;
 
 import com.bsuir.cardealership.model.*;
 import com.bsuir.cardealership.payload.request.OrderRequest;
+import com.bsuir.cardealership.payload.request.RateRequest;
+import com.bsuir.cardealership.payload.request.StatusRequest;
 import com.bsuir.cardealership.repository.*;
-import com.bsuir.cardealership.util.email.EmailSender;
+import com.bsuir.cardealership.email.EmailSender;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,7 +31,7 @@ public class OrderController {
     DateSlotsRepository dateSlotsRepository;
 
     @GetMapping("/orders")
-    public ResponseEntity<List<Order>> getAllCenters() {
+    public ResponseEntity<List<Order>> getAllOrders() {
 
         try {
             List<Order> orders = new ArrayList<Order>(orderRepository.findAll());
@@ -58,11 +60,11 @@ public class OrderController {
             DealerCenter dealerCenter = dealerCenterRepository.getDealerCenterById(dealerCenterId);
             DateSlots dateSlots = dateSlotsRepository.getDateSlotsById(dateId);
             Order _tutorial = orderRepository
-                    .save(new Order(car, user, dateSlots, dealerCenter, status));
+                    .save(new Order(car, user, dateSlots, dealerCenter, status, null));
             EmailSender.getInstance().sendEmail(
                     user.getEmail(),
                     "Заявка на тест-драйв",
-                    user.getName() + ", спасибо за заявку на тест-драйв!"+
+                    user.getName() + ", спасибо за заявку на тест-драйв!" +
                             "\nАвтомобиль: " + car.getModel() + "\nДилерский центр: "
                             + dealerCenter.getAddress() +
                             "\nДата и время: " + dateSlots.getDate()
@@ -72,4 +74,20 @@ public class OrderController {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    @PatchMapping("/orders")
+    public ResponseEntity<Order> updateOrderStatus(@RequestBody StatusRequest statusRequest) {
+        Order order = orderRepository.getOrderById(statusRequest.getOrderId());
+        OrderStatus orderStatus = orderStatusRepository.getOrderStatusById(statusRequest.getStatusId());
+        order.setStatus(orderStatus);
+        return new ResponseEntity<>(orderRepository.save(order), HttpStatus.OK);
+    }
+
+    @PatchMapping("/rate")
+    public ResponseEntity<Order> updateRate(@RequestBody RateRequest rateRequest) {
+        Order order = orderRepository.getOrderById(rateRequest.getOrderId());
+        order.setValue(rateRequest.getValue());
+        return new ResponseEntity<>(orderRepository.save(order), HttpStatus.OK);
+    }
+
 }

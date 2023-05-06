@@ -1,4 +1,4 @@
-package com.bsuir.cardealership.util.email;
+package com.bsuir.cardealership.email;
 
 public class EmailSender {
     private static final EmailSender INSTANCE = new EmailSender();

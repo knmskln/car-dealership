@@ -54,9 +54,9 @@ public class CarController {
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Car> createCar(@RequestBody Car car) {
         try {
-            Car _tutorial = carRepository
-                    .save(new Car(car.getMark(), car.getModel(), car.getYear(), car.getColor(), car.getPrice()));
-            return new ResponseEntity<>(_tutorial, HttpStatus.CREATED);
+            Car carAdd = carRepository
+                    .save(new Car(car.getMark(), car.getModel(), car.getYear(), car.getColor(), car.getPrice(), car.getImagePath()));
+            return new ResponseEntity<>(carAdd, HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }

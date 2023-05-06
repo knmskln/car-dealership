@@ -1,4 +1,4 @@
-package com.bsuir.cardealership.util.email;
+package com.bsuir.cardealership.email;
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;

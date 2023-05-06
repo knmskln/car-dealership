@@ -29,7 +29,8 @@ public class Order {
     @JoinColumn(name = "status_id")
     private OrderStatus status;
 
-
+    @Column(name = "value")
+    private Double value;
 
     public DateSlots getDate() {
         return date;
@@ -79,16 +80,24 @@ public class Order {
         this.status = status;
     }
 
-    public Order(Car car, User user, DateSlots date, DealerCenter dealerCenter, OrderStatus status) {
+    public Double getValue() {
+        return value;
+    }
+
+    public void setValue(Double value) {
+        this.value = value;
+    }
+
+    public Order(Car car, User user, DateSlots date, DealerCenter dealerCenter, OrderStatus status, Double value) {
         this.car = car;
         this.user = user;
         this.date = date;
         this.dealerCenter = dealerCenter;
         this.status = status;
+        this.value = value;
     }
 
     public Order(){
-
     }
 
 }
